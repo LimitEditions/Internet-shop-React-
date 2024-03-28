@@ -1,0 +1,11 @@
+.comment{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.trash{
+  width: 30px;
+  height: 30px;
+}
