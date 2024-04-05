@@ -6,16 +6,16 @@ function TemperatureConverter() {
     const [temperatureC, setTemperatureC] = useState();
     const [temperatureF, setTemperatureF] = useState();
 
-    const changeTemperature = (value) => {
+    const changeTemperature = () => {
         // e.preventDefault();
-        if (temperatureC) {
-            const converted = Math.round((value * 9 / 5) + 32);
-            setTemperatureF(converted || '');
+        if (temperatureC !== '') {
+            const converted = Math.round((parseFloat(temperatureC) * 9 / 5) + 32);
+            setTemperatureF(converted.toString() || '');
         }
 
-        if (temperatureF) {
-            const converted = Math.round((value - 32) * 5/9);
-            setTemperatureC(converted || '');
+        if (temperatureF !== '') {
+            const converted = Math.round((parseFloat(temperatureF) - 32) * 5/9);
+            setTemperatureC(converted.toString() || '');
         }
 
     }

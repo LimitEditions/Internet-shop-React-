@@ -20,13 +20,10 @@ function ToDoList() {
         setTask("");
     }
 
-    const deleteTask = (id) => {
-        const index = tasks.findIndex(task => task.id === id);
-        if (index !== -1) {
-            const newTasks = [...tasks];
-            newTasks.splice(index, 1);
-            setTasks(newTasks);
-        }
+    const deleteTask = (index) => {
+        const newTasks = [...tasks];
+        newTasks.splice(index, 1);
+        setTasks(newTasks);
     }
 
     return (
@@ -36,10 +33,10 @@ function ToDoList() {
                 <Button variant="contained" style={{ display: 'flex', margin: '20px auto' }} onClick={clickHandler}>Добавить задачу</Button>
                 <List>
                     <ListItem className='list'>
-                        {tasks.map((item) => (
-                            <><ListItemText key={tasks.indexOf(item)}>{item}</ListItemText><ListItemIcon>
+                        {tasks.map((item, index) => (
+                            <div className='listItem'><ListItemText key={index}>{item}</ListItemText><ListItemIcon>
                                 <DeleteIcon onClick={() => deleteTask(task.id)} />
-                            </ListItemIcon></>
+                            </ListItemIcon></div>
                         ))}
                     </ListItem>
                 </List>
