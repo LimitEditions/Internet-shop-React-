@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 function CommentsList() {
     const [comments, setComments] = useState([
         { id: 1, text: "Это первый комментарий" },
