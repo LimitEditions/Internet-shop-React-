@@ -1,21 +1,22 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { deleteTodo } from '../reducers/todoReducer';
+import AddTodo from './AddTodo'
 
 const TodoList = () => {
-    const todos = useSelector(state => state.todoReducer);
+    const todos = useSelector(state => state.todo.array);
     const dispatch = useDispatch();
 
     return(
-        <ul>
+        <>
+        <AddTodo />
             {todos.map(todo => (
                 <div key={todo.id}>
-                    <p>id: {todo.id}</p>
-                    <p>desc: {todo.desc}</p>
-                    <button onClick={() => {
-                        return dispatch(deleteTodo(todo))
-                    }}>Delete</button>
+                    <p>desc: {todo.text}</p>
+                    <button onClick={(id) => dispatch(deleteTodo({id}))
+                    }>Delete</button>
                 </div>
             ))}
-        </ul>
+        </>
     )
 };
 

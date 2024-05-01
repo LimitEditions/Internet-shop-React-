@@ -1,10 +1,10 @@
-export const addTodo = (description) => ({
+export const addTodo = (text) => ({
     type: 'ADD_TODO',
-    payload: { description }
+    payload: { text }
 
 });
 
-export const toggleTodo = (id) => ({
+export const deleteTodo = (id) => ({
     type: 'DELETE_TODO',
     payload: { id }
 });

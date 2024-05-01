@@ -2,17 +2,20 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const todoReducer = createSlice({
     name: 'todoReducer',
-    initialState: [],
-    reducers: {
-        addTodo: (state, {payload: newTodo}) => {
-            if (state.some((item) => item.id === newTodo.id)) {
-                return;
+    initialState: {
+        array:[
+            {
+                id: 1,
+                text: "Новая задача",
             }
-            state.push(newTodo);
+        ]
+    },
+    reducers: {
+        addTodo: (state, {payload: { text }}) => {
+            state.array.push(text);
         },
-        deleteTodo: (state, {payload: todoItem}) => {
-            const filtredArray = state.filter((item) => item.id !== todoItem.id);
-            state = filtredArray;
+        deleteTodo: (state, {payload: {id}}) => {
+            return state.array.filter((item) => item.id !== id); // Возвращаем новый массив состояния
         }
     }
 });

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../actions/index";
 
@@ -7,8 +7,10 @@ const AddTodo = () => {
     const dispatch = useDispatch();
 
     const handleAddTodo = () => {
-        dispatch(addTodo(text));
-        setText('');
+        if (text.trim() !== '') { // Проверяем, что текст не пустой
+            dispatch(addTodo({ text }));
+            setText('');
+        }
     };
 
     return(
