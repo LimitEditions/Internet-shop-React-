@@ -1,0 +1,12 @@
+@mixin flex($disp, $justCont, $alItem, $ml, $mr) {
+    display: $disp;
+    justify-content: $justCont;
+    align-items: $alItem;
+    margin-left: $ml;
+    margin-right: $mr;
+}
+
+@mixin font($fs, $fw){
+    font-size: $fs;
+    font-weight: $fw;
+}
