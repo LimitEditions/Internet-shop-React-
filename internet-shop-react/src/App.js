@@ -22,8 +22,8 @@ function App() {
         <Header count={count} />
         <Routes>
           <Route path='/' element={<Index addToCart={addToCart} />}></Route>
-          <Route path='/catalog' element={<Catalog />}></Route>
-          <Route path='/product' element={<Product />}></Route>
+          <Route path='/catalog' element={<Catalog addToCart={addToCart} />}></Route>
+          <Route path='/product' element={<Product addToCart={addToCart}/>}></Route>
           <Route path='/registration' element={<Registration />}></Route>
           <Route path='/cart' element={<ShoppingCart />}></Route>
         </Routes>

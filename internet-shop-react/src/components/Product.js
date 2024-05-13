@@ -4,13 +4,13 @@ import ProductImg from './ProductImg';
 import Choose from './Choose';
 import ProductCard from './ProductCard';
 
-function Product() {
+function Product(props) {
     return (
         <>
             <Navigations/>
             <ProductImg/>
-            <Choose/>
-            <ProductCard/>
+            <Choose addToCart={props.addToCart}/>
+            <ProductCard addToCart={props.addToCart}/>
         </>
     );
 }

@@ -184,7 +184,7 @@ img {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 30px;
-  @include flex(flex, space-between, center, auto, auto);
+  @include flex(flex, center, center, auto, auto);
 }
 
 .nav__Img {
@@ -593,6 +593,10 @@ img {
   }
 }
 
+.product-card {
+  margin-bottom: 128px;
+}
+
 // catalog
 .filter-sort {
   height: 132px;
@@ -600,6 +604,7 @@ img {
   gap: 30px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .filter {
@@ -1184,10 +1189,6 @@ img {
     &__btn {
       margin: 48px auto 64px;
     }
-  }
-
-  .product-card {
-    margin-bottom: 128px;
   }
 
   // cart

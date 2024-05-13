@@ -200,7 +200,7 @@ img {
   flex-wrap: wrap;
   gap: 30px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
@@ -632,12 +632,17 @@ img {
   fill: #ffffff;
 }
 
+.product-card {
+  margin-bottom: 128px;
+}
+
 .filter-sort {
   height: 132px;
   box-sizing: border-box;
   gap: 30px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .filter {
@@ -1143,9 +1148,6 @@ img {
   }
   .choose__btn {
     margin: 48px auto 64px;
-  }
-  .product-card {
-    margin-bottom: 128px;
   }
   .cart-style {
     flex-direction: column;
