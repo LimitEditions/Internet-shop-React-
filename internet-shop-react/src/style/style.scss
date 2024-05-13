@@ -615,7 +615,6 @@ img {
   &[open] {
     background: $colorWhite;
     box-shadow: 6px 4px 35px rgba(0, 0, 0, 0.21);
-    // margin-top: 39px;
     z-index: 1;
     padding: 17px;
     position: absolute;
@@ -753,8 +752,7 @@ img {
 
 // cart
 .cart-style {
-  display: flex;
-  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 .cart {
@@ -823,7 +821,7 @@ img {
 
 .order {
   width: 360px;
-  margin-top: 113px;
+  margin-top: -200px;
 
   &__adress {
     display: flex;

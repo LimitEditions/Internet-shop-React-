@@ -776,8 +776,7 @@ img {
 }
 
 .cart-style {
-  display: flex;
-  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 .cart {
@@ -839,7 +838,7 @@ img {
 
 .order {
   width: 360px;
-  margin-top: 113px;
+  margin-top: -200px;
 }
 .order__adress {
   display: flex;
