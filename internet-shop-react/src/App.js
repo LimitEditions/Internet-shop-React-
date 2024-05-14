@@ -5,7 +5,7 @@ import Index from './components';
 import Catalog from './components/Catalog';
 import Product from './components/Product';
 import Registration from './components/Registration';
-import ShoppingCart from './components/ShoppingCard';
+import ShoppingCart from './components/ShoppingCart';
 import Header from './components/Header';
 import Subscribe from './components/Subscribe';
 import Footer from './components/Footer';
