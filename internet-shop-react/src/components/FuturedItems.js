@@ -1,16 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
+import products from '../data/products';
 
-function FeaturedItems(props) {
-  const products = [
-    { id: uuidv4(), img: require("../img/card1.jpg"), name: "ELLERY X M'O CAPSULE", desc: 'Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.', price: 52.00 },
-    { id: uuidv4(), img: require("../img/card2.png"), name: "ELLERY X M'O CAPSULE", desc: 'Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.', price: 52.00 },
-    { id: uuidv4(), img: require("../img/card3.png"), name: "ELLERY X M'O CAPSULE", desc: 'Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.', price: 52.00 },
-    { id: uuidv4(), img: require("../img/card4.png"), name: "ELLERY X M'O CAPSULE", desc: 'Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.', price: 52.00 },
-    { id: uuidv4(), img: require("../img/card5.png"), name: "ELLERY X M'O CAPSULE", desc: 'Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.', price: 52.00 },
-    { id: uuidv4(), img: require("../img/card6.png"), name: "ELLERY X M'O CAPSULE", desc: 'Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.', price: 52.00 }
-  ]
+function FeaturedItems({ addToCart }) {
+
   return (
     <section className="contener">
       <section className="second__container column">
@@ -24,7 +17,7 @@ function FeaturedItems(props) {
               <div className="img__Card">
                 <img src={product.img} alt={`card ${product.id}`} />
               </div>
-              <Link to={`/product`}>
+              <Link to={`/product/`}>
                 <div className="text__Card">
                   <h4>{product.name}</h4>
                   <h3>{product.desc}</h3>
@@ -33,7 +26,7 @@ function FeaturedItems(props) {
               </Link>
               <div className="card__hover">
                 <img src={require("../img/hover.png")} alt="hover" />
-                <button className="button-hover" onClick={props.addToCart}>
+                <button className="button-hover" onClick={() => addToCart(product)}>
                   <img src={require("../img/basket.png")} alt="basket" />
                   Add to Cart
                 </button>

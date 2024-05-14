@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadProducts } from './actions/productActions';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import './style/style.css'
+import './style/style.css';
 import Index from './components';
 import Catalog from './components/Catalog';
 import Product from './components/Product';
@@ -11,37 +13,29 @@ import Subscribe from './components/Subscribe';
 import Footer from './components/Footer';
 
 function App() {
-  const [cartItems, setCartItems] = useState([]);
+  const dispatch = useDispatch();
 
-  const addToCart = (product, quantity = 1) => {
-    const existingItem = cartItems.find(item => item.id === product.id);
-    if (existingItem) {
-      setCartItems(
-        cartItems.map(item =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        )
-      );
-    } else {
-      setCartItems([...cartItems, { ...product, quantity }]);
-    }
-    console.log("Cart Items:", cartItems);
-  };
+  useEffect(() => {
+      dispatch(loadProducts());
+  }, [dispatch]);
 
+  const cart = useSelector(state => state.cart);
+  
   return (
-    <div className="App">
-      <Router>
-        <Header count={cartItems.reduce((total, item) => total + item.quantity, 0)} />
-        <Routes>
-          <Route path='/' element={<Index addToCart={addToCart} />}></Route>
-          <Route path='/catalog' element={<Catalog addToCart={addToCart} />}></Route>
-          <Route path='/product' element={<Product addToCart={addToCart}/>}></Route>
-          <Route path='/registration' element={<Registration />}></Route>
-          <Route path='/cart' element={<ShoppingCart cart={cartItems} setCart={setCartItems}/>}></Route>
-        </Routes>
-        <Subscribe />
-        <Footer />
-      </Router>
-    </div>
+      <div className="App">
+        <Router>
+          <Header />
+          <Routes>
+            <Route path='/' element={<Index />}></Route>
+            <Route path='/catalog' element={<Catalog />}></Route>
+            <Route path='/product' element={<Product />}></Route>
+            <Route path='/registration' element={<Registration />}></Route>
+            <Route path='/cart' element={<ShoppingCart cart={cart} />}></Route>
+          </Routes>
+          <Subscribe />
+          <Footer />
+        </Router>
+      </div>
   );
 }
 

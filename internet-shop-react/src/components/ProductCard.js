@@ -1,16 +1,17 @@
-import React from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import React, { useEffect, useState } from 'react';
+import products from '../data/products';
 
 function ProductCard(props) {
-    const products = [
-        { id: uuidv4(), img: require("../img/card4.png"), name: "ELLERY X M'O CAPSULE", desc: 'Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.', price: 52.00 },
-        { id: uuidv4(), img: require("../img/card3.png"), name: "ELLERY X M'O CAPSULE", desc: 'Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.', price: 52.00 },
-        { id: uuidv4(), img: require("../img/card6.png"), name: "ELLERY X M'O CAPSULE", desc: 'Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.', price: 52.00 },
-    ]
+    const [productList, setProductList] = useState([]);
+
+    useEffect(() => {
+        setProductList(products);
+    }, []);
+
     return (
         <section className="contener">
             <div className="second__container product-card">
-                {products.map(product => (
+                {productList.map(product => (
                     <div className="card" key={product.id}>
                         <div className="img__Card">
                             <img src={product.img} alt={`card ${product.id}`} />
@@ -22,12 +23,13 @@ function ProductCard(props) {
                         </div>
                         <div className="card__hover">
                             <img src={require("../img/hover.png")} alt="hover" />
-                            <button className="button-hover" onClick={props.addToCart(product)}>
+                            <button className="button-hover" onClick={() => props.addToCart(product)}>
                                 <img src={require("../img/basket.png")} alt="basket" />
                                 Add to Cart
                             </button>
                         </div>
-                    </div>))}
+                    </div>
+                ))}
             </div>
         </section>
     )
