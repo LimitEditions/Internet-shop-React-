@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Header(props) {
+function Header({count}) {
   return (
     <header className="contener header__style">
       <div className="header">
@@ -29,7 +29,7 @@ function Header(props) {
             <img src={require("../img/basket.png")} alt="basket" />
           </button>
           </Link>
-          <div className="count">{props.count}</div>
+          <div className="count">{count}</div>
         </div>
       </div>
     </header>

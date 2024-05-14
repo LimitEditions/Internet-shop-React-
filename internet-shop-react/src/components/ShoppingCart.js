@@ -1,30 +1,28 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-function ShoppingCart() {
-        const [sity, setSity] = useState('Bangladesh');
-        const [state, setState] = useState('State');
-        const [postcode, setPostcode] = useState('Postcode/Zip');
-    const [quantity, setQuantity] = useState('');
-    const [cart, setCart] = useState([]);
-    // Функция для добавления товара в корзину
-    const addToCart = (product) => {
-        setCart([...cart, product]);
-    };
+function ShoppingCart({cart, setCart}) {
+    const [sity, setSity] = useState('Bangladesh');
+    const [state, setState] = useState('State');
+    const [postcode, setPostcode] = useState('Postcode/Zip');
 
-    // Функция для удаления товара из корзины
     const removeFromCart = (productId) => {
         setCart(cart.filter(item => item.id !== productId));
     };
 
-    // Функция для изменения количества товара в корзине
     const changeQuantity = (productId, newQuantity) => {
         setCart(cart.map(item => (item.id === productId ? { ...item, quantity: newQuantity } : item)));
     };
 
-    // Рассчитываем общую сумму корзины
+    // const addToCart = (product) => {
+    //     setCart([...cart, { ...product, quantity: 1 }]);
+    // };
+
     const totalAmount = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-        return (
-            <section className="contener">
+    console.log("Cart Item:", cart);
+
+
+    return (
+        <section className="contener">
             <div className="second__container cart-style">
                 <div className="cart">
                     {cart.map(product => (

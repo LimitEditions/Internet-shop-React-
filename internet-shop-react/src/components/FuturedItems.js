@@ -19,8 +19,8 @@ function FeaturedItems(props) {
           <p>Shop for items based on what we featured in this week</p>
         </div>
         <div className="second__container">
-          {products.map((product, index) => (
-            <div className="card" key={index}>
+          {products.map(product => (
+            <div className="card" key={product.id}>
               <div className="img__Card">
                 <img src={product.img} alt={`card ${product.id}`} />
               </div>

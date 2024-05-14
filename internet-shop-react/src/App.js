@@ -11,21 +11,32 @@ import Subscribe from './components/Subscribe';
 import Footer from './components/Footer';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [cartItems, setCartItems] = useState([]);
 
-  const addToCart = () => {
-    setCount(count + 1);
+  const addToCart = (product, quantity = 1) => {
+    const existingItem = cartItems.find(item => item.id === product.id);
+    if (existingItem) {
+      setCartItems(
+        cartItems.map(item =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, quantity }]);
+    }
+    console.log("Cart Items:", cartItems);
   };
+
   return (
     <div className="App">
       <Router>
-        <Header count={count} />
+        <Header count={cartItems.reduce((total, item) => total + item.quantity, 0)} />
         <Routes>
           <Route path='/' element={<Index addToCart={addToCart} />}></Route>
           <Route path='/catalog' element={<Catalog addToCart={addToCart} />}></Route>
           <Route path='/product' element={<Product addToCart={addToCart}/>}></Route>
           <Route path='/registration' element={<Registration />}></Route>
-          <Route path='/cart' element={<ShoppingCart />}></Route>
+          <Route path='/cart' element={<ShoppingCart cart={cartItems} setCart={setCartItems}/>}></Route>
         </Routes>
         <Subscribe />
         <Footer />

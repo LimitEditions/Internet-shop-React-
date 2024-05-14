@@ -17,8 +17,8 @@ function CardCatalog({ selectSize, addToCart }) {
     const filteredSize = selectSize ? products.filter(product => product.size === selectSize) : products;
     return (
         <div className="second__container">
-            {filteredSize.map((product, index) => (
-                <div key={index} className="card card_catalog">
+            {filteredSize.map(product => (
+                <div key={product.id} className="card card_catalog">
                     <div className="img__Card">
                         <img src={product.img} alt={`card${product.id}`} />
                     </div>
@@ -29,7 +29,7 @@ function CardCatalog({ selectSize, addToCart }) {
                     </div>
                     <div className="card__hover">
                         <img src={require("../img/hover.png")} alt="hover" />
-                        <button className="button-hover" onClick={addToCart}>
+                        <button className="button-hover" onClick={addToCart(product)}>
                             <img src={require("../img/basket.png")} alt="basket" /> Add to Cart </button>
                     </div>
                 </div>

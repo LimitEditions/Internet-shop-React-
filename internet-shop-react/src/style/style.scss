@@ -758,6 +758,7 @@ img {
 // cart
 .cart-style {
   flex-wrap: nowrap;
+  min-height: 800px;
 }
 
 .cart {
@@ -826,7 +827,6 @@ img {
 
 .order {
   width: 360px;
-  margin-top: -200px;
 
   &__adress {
     display: flex;
