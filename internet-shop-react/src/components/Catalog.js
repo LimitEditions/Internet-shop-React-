@@ -19,7 +19,6 @@ function Catalog(props) {
         <>
             <Navigations />
             <FilterSort onSizeChange={handleSizeChange} />
-            {/* Передаем продукты и выбранный размер в CardCatalog */}
             <CardCatalog products={products} selectSize={selectedSize} addToCart={props.addToCart} />
             <Rounder />
             <Order />

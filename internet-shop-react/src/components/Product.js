@@ -3,7 +3,7 @@ import Navigations from './Navigations';
 import ProductImg from './ProductImg';
 import Choose from './Choose';
 import ProductCard from './ProductCard';
-import { addToCart } from '../actions/cartActions';
+import { addToCart } from '../reducers/cartReducer';
 
 function Product() {
     return (

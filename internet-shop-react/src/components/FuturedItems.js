@@ -1,9 +1,17 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import products from '../data/products';
+import { addToCart } from '../reducers/cartReducer';
+import { selectProducts } from '../reducers/productReducer';
 
-function FeaturedItems({ addToCart }) {
-
+function FeaturedItems() {
+  const dispatch = useDispatch();
+  const products = useSelector(selectProducts);
+  const handleAddToCart = (product) => {
+    dispatch(addToCart({ product, quantity: 1 }));
+  };
+  const productSlice = products.slice(0, 6);
+  console.log(products);
   return (
     <section className="contener">
       <section className="second__container column">
@@ -12,7 +20,7 @@ function FeaturedItems({ addToCart }) {
           <p>Shop for items based on what we featured in this week</p>
         </div>
         <div className="second__container">
-          {products.map(product => (
+          {productSlice.map(product => (
             <div className="card" key={product.id}>
               <div className="img__Card">
                 <img src={product.img} alt={`card ${product.id}`} />
@@ -26,7 +34,7 @@ function FeaturedItems({ addToCart }) {
               </Link>
               <div className="card__hover">
                 <img src={require("../img/hover.png")} alt="hover" />
-                <button className="button-hover" onClick={() => addToCart(product)}>
+                <button className="button-hover" onClick={() => handleAddToCart(product)}>
                   <img src={require("../img/basket.png")} alt="basket" />
                   Add to Cart
                 </button>

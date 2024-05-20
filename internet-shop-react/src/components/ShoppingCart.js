@@ -1,20 +1,29 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCart, updateQuantity } from '../reducers/cartReducer';
+import { setQuantity} from '../reducers/quantityReducer'
+import { Link } from 'react-router-dom';
 
 function ShoppingCart({ cart }) {
-    const cartArray = Object.values(cart);
+    const cartArray = cart.cartItems;
+
     const dispatch = useDispatch();
+    const quantities = useSelector(state => state.quantities);
 
     const handleRemove = (productId) => {
         dispatch(removeFromCart(productId));
+        dispatch(setQuantity({ productId, quantity: 0 }));
     };
 
     const handleChangeQuantity = (productId, newQuantity) => {
-        dispatch(updateQuantity({ productId, newQuantity }));
+        if (newQuantity >= 1){
+            dispatch(updateQuantity({ productId, quantity: newQuantity }));
+            dispatch(setQuantity({ productId, quantity: newQuantity }));
+        }
     };
 
     const totalAmount = cartArray.reduce((total, item) => total + (item.price * item.quantity), 0);
+
     return (
         <section className="contener">
             <div className="second__container cart-style">
@@ -28,12 +37,14 @@ function ShoppingCart({ cart }) {
                                     <p>Price: <span className="cart__price">${item.price}</span></p>
                                     <p>Color: {item.color}</p>
                                     <p>Size: {item.size}</p>
-                                    <div className="cart__qty">
+                                    <div >
                                         <label>Quantity:</label>
-                                        <input
+                                        <input className="cart__qty"
                                             type="number"
-                                            value={item.quantity}
-                                            onChange={(e) => handleChangeQuantity(item.id, parseInt(e.target.value))}
+                                            value={item.quantity} 
+                                            min="1"
+                                            onChange={(e) => handleChangeQuantity(item.id, parseInt(e.target.value))
+                                            }
                                         />
                                     </div>
                                 </div>
@@ -47,15 +58,15 @@ function ShoppingCart({ cart }) {
                     ))}
                     <div className="cart__choose">
                         <button className="order__btn order__btn_choose">CLEAR SHOPPING CART</button>
-                        <button className="order__btn order__btn_choose">CONTINUE SHOPPING</button>
+                        <Link to={`/catalog`}><button className="order__btn order__btn_choose">CONTINUE SHOPPING</button></Link>
                     </div>
                 </div>
                 <div className="order">
                     <div className="order__adress">
                         <h3 className="order__heading">SHIPPING ADDRESS</h3>
-                        <input id="select-colortext" type="text" value="Bangladesh" onChange={() => {}} />
-                        <input type="text" value="State" onChange={() => {}} />
-                        <input type="text" value="Postcode/Zip" onChange={() => {}} />
+                        <input id="select-colortext" type="text" value="Bangladesh" onChange={() => { }} />
+                        <input type="text" value="State" onChange={() => { }} />
+                        <input type="text" value="Postcode/Zip" onChange={() => { }} />
                         <button className="order__btn">GET A QUOTE</button>
                     </div>
                     <div className="order__sum">

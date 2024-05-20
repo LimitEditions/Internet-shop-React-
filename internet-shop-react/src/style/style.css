@@ -820,11 +820,12 @@ img {
 .cart__prise {
   color: #f16d7f;
 }
-.cart__input {
+.cart__qty {
   width: 44px;
-  height: 25px;
   border: 1px solid #eaeaea;
   text-align: center;
+  font-size: 18px;
+  margin-left: 24px;
 }
 .cart__close {
   width: 20px;

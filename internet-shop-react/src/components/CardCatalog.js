@@ -1,14 +1,15 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { addToCart } from '../reducers/cartReducer';
-import products from '../data/products';
+import { selectProducts } from '../reducers/productReducer';
 
 function CardCatalog({ selectSize }) {
     const dispatch = useDispatch();
+    const products = useSelector(selectProducts);
     const filteredSize = selectSize ? products.filter(product => product.size === selectSize) : products;
 
     const handleAddToCart = (product) => {
-        dispatch(addToCart({ ...product, quantity: 1 }));
+        dispatch(addToCart({ product, quantity: 1 }));
     };
 
     return (

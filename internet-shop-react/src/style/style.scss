@@ -799,11 +799,12 @@ img {
     color: $colorPink;
   }
 
-  &__input {
+  &__qty {
     width: 44px;
-    height: 25px;
     border: 1px solid #eaeaea;
     text-align: center;
+    font-size: 18px;
+    margin-left: 24px;
   }
 
   &__close {

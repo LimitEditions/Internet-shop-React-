@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import products from '../data/products';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addToCart } from '../reducers/cartReducer';
+import { selectProducts } from '../reducers/productReducer';
 
-function ProductCard(props) {
-    const [productList, setProductList] = useState([]);
+function ProductCard() {
+    const dispatch = useDispatch();
+    const products = useSelector(selectProducts);
 
-    useEffect(() => {
-        setProductList(products);
-    }, []);
+    const handleAddToCart = (product) => {
+        dispatch(addToCart({ product, quantity: 1 }));
+    };
+
+    const productChoose = [products[3], products[2], products[5]];
 
     return (
         <section className="contener">
             <div className="second__container product-card">
-                {productList.map(product => (
+                {productChoose.map(product => (
                     <div className="card" key={product.id}>
                         <div className="img__Card">
                             <img src={product.img} alt={`card ${product.id}`} />
@@ -23,7 +28,7 @@ function ProductCard(props) {
                         </div>
                         <div className="card__hover">
                             <img src={require("../img/hover.png")} alt="hover" />
-                            <button className="button-hover" onClick={() => props.addToCart(product)}>
+                            <button className="button-hover" onClick={() => handleAddToCart(product)}>
                                 <img src={require("../img/basket.png")} alt="basket" />
                                 Add to Cart
                             </button>

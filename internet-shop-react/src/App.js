@@ -1,9 +1,8 @@
-import React, {useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { loadProducts } from './actions/productActions';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './style/style.css';
-import Index from './components';
+import Index from './components/index';
 import Catalog from './components/Catalog';
 import Product from './components/Product';
 import Registration from './components/Registration';
@@ -13,18 +12,12 @@ import Subscribe from './components/Subscribe';
 import Footer from './components/Footer';
 
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-      dispatch(loadProducts());
-  }, [dispatch]);
-
   const cart = useSelector(state => state.cart);
-  
+
   return (
       <div className="App">
         <Router>
-          <Header />
+          <Header cart={cart}/>
           <Routes>
             <Route path='/' element={<Index />}></Route>
             <Route path='/catalog' element={<Catalog />}></Route>

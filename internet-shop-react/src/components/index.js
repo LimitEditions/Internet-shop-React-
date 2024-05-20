@@ -3,8 +3,8 @@ import Main from '../components/Main';
 import Nav from '../components/Nav';
 import FuturedItems from '../components/FuturedItems';
 import Order from './Order';
-import { addToCart } from '../actions/cartActions';
-function Index(props) {
+import { addToCart } from '../reducers/cartReducer';
+function Index() {
     return (
         <div>
             <Main />
